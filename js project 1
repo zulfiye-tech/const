@@ -1,0 +1,67 @@
+//Tüm  elementleri secme
+
+const form=document.querySelector("#todo-form");
+
+const todoInput=document.querySelector("#todo");
+
+const todoList=document.querySelector(".list-group");
+
+const firstCardBody=document.querySelectorAll(".card-body")[0];
+
+const secondCardBody=document.querySelectorAll(".card-body")[1];
+
+const filter=document.querySelector("#filter");
+
+const clearButton=document.querySelector("#clear-todos");
+
+eventListener();
+
+function eventListener(){
+
+    form.addEventListener("submit",addTodo);  
+
+}
+function addTodo(e){
+
+const newTodo = form.querySelector('input[name="todo"]').value.trim();   //burda bizim verdiğimiz değişkemler çıkması gerekiyor ancak undefined çıktısı geliyor
+
+if (newTodo) addTodoToUI(newTodo);
+
+
+    e.preventDefault();
+}
+
+function addTodoToUI(newTodo){
+    //list Item oluşturma
+    const listItem=document.createElement("li");
+    
+    listItem.className="list-group-item d-flex justify-content-between";
+
+ //link olusturma
+
+    const link = document.createElement("a");
+
+    link.href="#";
+
+    link.className="delete-item";
+
+    link.innerHTML="<i class = 'fa fa-remove'></i>";
+
+ //Text node ekleme
+
+    listItem.appendChild(document.createTextNode(newTodo));
+
+    listItem.appendChild(link);
+
+ //Todo list'e list Item ekleme
+
+    todoList.appendChild(listItem);
+
+    form.querySelector('input[name="todo"]').value = "";
+
+
+
+}
+
+
+    
